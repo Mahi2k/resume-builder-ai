@@ -23,17 +23,19 @@ stages:
     - task: Docker@2
       displayName: Build Frontend image
       inputs:
+        containerRegistry: azure-to-docker
+        repository: mahi2k22/resume-frontend
         command: build
         dockerfile: '$(Build.SourcesDirectory)/ResumeBuilderAngular/Dockerfile'
-        tags: |
-          $(tag)
+        tags: latest
     - task: Docker@2
       displayName: Build Backend image
       inputs:
+        containerRegistry: azure-to-docker
+        repository: mahi2k22/resume-backend
         command: build
         dockerfile: '$(Build.SourcesDirectory)/ResumeBuilderBackend/Dockerfile'
-        tags: |
-          $(tag)
+        tags: latest
     - task: Docker@2
       displayName: Push Frontend image
       inputs:
